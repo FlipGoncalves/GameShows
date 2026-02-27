@@ -1,0 +1,70 @@
+:root {
+    --cell-width: 200px;
+    --cell-height: 100px;
+}
+
+.cell {
+    border: 2px solid black;
+    background-color: #0047AB;
+    width: var(--cell-width);
+    height: var(--cell-height);
+}
+
+.cell p {
+    font-size: 40px;
+    font-weight: bold;
+    color:#FFC000;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.cell.title p {
+    color: white;
+    font-size: 30px;
+}
+
+.modal-none {
+    display: none !important;
+}
+
+.modal {
+    position: absolute;
+    background-color: #0047AB;
+    border: 2px solid black;
+    margin: auto;
+    min-height: 520px;
+    min-width: 1000px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    display: flex;
+    font-size: 50px;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+}
+
+.completed {
+    height: var(--cell-height);
+    width: var(--cell-width);
+    border-radius: 5px;
+    position: absolute;
+    background: transparent;
+}
+
+.completed:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\274c"; /* use the hex value here... */
+    font-size: 80px; 
+    line-height: var(--cell-height);
+    text-align: center;
+    z-index: 1;
+}
