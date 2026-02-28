@@ -1,4 +1,4 @@
-import { Button, Container, Form, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import './FooterGame.css'
 
 function FooterGame() {

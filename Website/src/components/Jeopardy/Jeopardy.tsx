@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import Board from "./Board/Board"
 import "./Jeopardy.css"
 import questions from './questions.json'
-import Form from 'react-bootstrap/Form'
 
 function Jeopardy() {
 
@@ -13,7 +12,7 @@ function Jeopardy() {
   }, [])
 
   const [selectedRows, setSelectedRows] = useState<number>(4)
-  const [selectedPlayers, setSelectedPlayers] = useState<number>(4)
+  // const [selectedPlayers, setSelectedPlayers] = useState<number>(4)
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [questionsList, setQuestionsList] = useState<any[]>([])
   const [created, setCreated] = useState<boolean>(false)
@@ -37,10 +36,10 @@ function Jeopardy() {
   }
     
   const filteredQuestions = questionsList.filter(q => selectedCategories.includes(q.category)).map(q => {
-    return q.questions.map(qt => {
+    return q.questions.map((qt: any) => {
       qt.category = q.category
       return qt
-    }).filter(q => q.value <= selectedRows * 100)
+    }).filter((q: any) => q.value <= selectedRows * 100)
   })
 
   const onlyUnique = (value: string, index: number, array: string[]) => {
@@ -61,35 +60,35 @@ function Jeopardy() {
     }
   }
   
-  const validateFile = (json_file: any) => {
-    if (!Array.isArray(json_file)) {
-      return false
-    }
-    json_file.forEach((cat: any) => {
-      if (cat.category == null || cat.questions == null) {
-        return false
-      }
-      cat.questions.forEach((q: any) => {
-        if (q.question == null || q.answer == null || q.value == null) {
-          return false
-        }
-      })
-    })
-    return true
-  }
+  // const validateFile = (json_file: any) => {
+  //   if (!Array.isArray(json_file)) {
+  //     return false
+  //   }
+  //   json_file.forEach((cat: any) => {
+  //     if (cat.category == null || cat.questions == null) {
+  //       return false
+  //     }
+  //     cat.questions.forEach((q: any) => {
+  //       if (q.question == null || q.answer == null || q.value == null) {
+  //         return false
+  //       }
+  //     })
+  //   })
+  //   return true
+  // }
 
-  const onFileChosen = async (file: Blob) => {
-    const fileReader = new FileReader();
-    fileReader.readAsText(file);
-    var json_file = JSON.parse(await file.text())
+  // const onFileChosen = async (file: Blob) => {
+  //   const fileReader = new FileReader();
+  //   fileReader.readAsText(file);
+  //   var json_file = JSON.parse(await file.text())
 
-    if (!validateFile(json_file)) {
-      alert("Invalid file format!")
-      return
-    }
+  //   if (!validateFile(json_file)) {
+  //     alert("Invalid file format!")
+  //     return
+  //   }
 
-    setQuestionsList(prev => [...prev, ...json_file])
-  }
+  //   setQuestionsList(prev => [...prev, ...json_file])
+  // }
 
   return (
     <>
