@@ -9,42 +9,51 @@
 h1 {
     font-size: 60px;
     margin-top: 0;
+    color: white !important;
+}
+
+h2, h3, h4, span, input, p.board-no-elements {
+  color: white !important;
+}
+
+input[type="file"] {
+  background-color: transparent;
 }
 
 .board {
-    display: flex;
-    justify-content: center;
-    max-height: 500px;
-    overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  max-height: 700px;
+  overflow-x: auto;
+  align-content: center;
+  height: 100%;
+  flex-wrap: wrap;
 }
 
 .board-no-limits {
-    display: flex;
-    justify-content: center;
+  padding: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-/* .btn-create-board {
-    margin-top: 15px;
-    background-color: transparent;
-    border: 2px solid black;
-    border-radius: 5px;
-    height: 80px;
-    width: 160px;
-    font-size: 20px;
-    font-weight: 200;
-    cursor: pointer;
+.setup-game {
+  padding: 3rem;
 }
-
-.btn-create-board:hover {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-} */
 
 .game-hidden {
     display: none !important;
 }
 
+.span-slider {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 18px !important;
+}
+
 .slider {
+  align-self: center;
   -webkit-appearance: none;
   width: 100%;
   height: 15px;
@@ -92,6 +101,7 @@ h1 {
   .checkbox-wrapper .round span {
     margin-left: 15px;
     cursor: pointer;
+    color: white;
   }
 
   .checkbox-wrapper .round label {
@@ -132,24 +142,3 @@ h1 {
   .checkbox-wrapper .round input[type="checkbox"]:checked + label:after {
     opacity: 1;
   }
-
-input[type="file"]::file-selector-button {
-  border-radius: 4px;
-  padding: 0 16px;
-  height: 40px;
-  cursor: pointer;
-  background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.16);
-  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
-  margin-right: 16px;
-  transition: background-color 200ms;
-  color: black;
-}
-
-input[type="file"]::file-selector-button:hover {
-  background-color: #f3f4f6;
-}
-
-input[type="file"]::file-selector-button:active {
-  background-color: #e5e7eb;
-}

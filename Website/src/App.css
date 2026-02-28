@@ -1,13 +1,19 @@
 #root {
   min-width: 80%;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  height: 100vh !important;
 }
 
 .game-row {
   display: flex;
+  padding: 4rem;
   gap: 20px;
+}
+
+body {
+  background-color: #242424 !important;
+  height: 100vh !important;
 }
 
 /* .logo {

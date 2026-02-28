@@ -26,11 +26,11 @@
     font-size: 30px;
 }
 
-.modal-none {
+.modal-game-none {
     display: none !important;
 }
 
-.modal {
+.modal-game {
     position: absolute;
     background-color: #0047AB;
     border: 2px solid black;
@@ -46,6 +46,7 @@
     font-weight: bold;
     justify-content: center;
     align-items: center;
+    color: white;
 }
 
 .completed {

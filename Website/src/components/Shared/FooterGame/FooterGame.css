@@ -1,0 +1,9 @@
+.bottom-nav-link {
+    color: rgba(255,255,255,0.65) !important;
+    cursor: default !important;
+}
+
+.bottom-nav-link:hover {
+    color: rgba(255,255,255,0.65) !important;
+    cursor: default !important;
+}

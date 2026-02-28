@@ -1,6 +1,6 @@
-import "./Modal.css"
+import "./ModalGame.css"
 
-function Modal({ text }: { text: string }) {
+function ModalGame({ text }: { text: string }) {
 
     return (
         <div className="modal-bg">
@@ -9,4 +9,4 @@ function Modal({ text }: { text: string }) {
     )
 }
 
-export default Modal
+export default ModalGame

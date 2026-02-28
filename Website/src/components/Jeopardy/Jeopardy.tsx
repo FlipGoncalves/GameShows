@@ -2,13 +2,21 @@ import { useEffect, useState } from "react"
 import Board from "./Board/Board"
 import "./Jeopardy.css"
 import questions from './questions.json'
+import Form from 'react-bootstrap/Form'
 
 function Jeopardy() {
+
+  useEffect(() => {
+    if (!document.querySelector("#navbar-breadcrumb ol")!.innerHTML.includes("Jeopardy")) {
+      document.querySelector("#navbar-breadcrumb ol")!.innerHTML += `<li class="breadcrumb-item"><a href="/jeopardy">Jeopardy</a></li>`
+    }
+  }, [])
 
   const [selectedRows, setSelectedRows] = useState<number>(4)
   const [selectedPlayers, setSelectedPlayers] = useState<number>(4)
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [questionsList, setQuestionsList] = useState<any[]>([])
+  const [created, setCreated] = useState<boolean>(false)
 
   var minRows = 1;
   var maxRows = 6;
@@ -44,6 +52,12 @@ function Jeopardy() {
       document.getElementById("setup-game")?.classList.add("game-hidden")
       document.getElementById("play-game")?.classList.remove("game-hidden")
       document.querySelector("body")?.classList.add("body-center")
+
+      document.querySelectorAll("nav.navbar").forEach((nav) => {
+        nav.classList.add("game-hidden")
+      })
+
+      setCreated(true)
     }
   }
   
@@ -79,23 +93,25 @@ function Jeopardy() {
 
   return (
     <>
-      <div id="setup-game">
-        <h1>Jeopardy</h1>
+      <div id="setup-game" className="setup-game">
         <div className="board-container">
-          <div className="div-col-2">
+          <div className="col-3">
             {/* <h2>Number of Players: {selectedPlayers}</h2>
             <div className="slidecontainer">
               <input type="range" min="2" max="6" value={selectedPlayers} className="slider" id="myRange" onChange={(e) => setSelectedPlayers(parseInt(e.target.value))} />
             </div> */}
-            <h2>Level: {selectedRows}</h2>
-            <div className="slidecontainer">
+            <h4>Level: {selectedRows}</h4>
+            <div className="slidecontainer d-flex">
+              <span className="span-slider">{minRows}</span>
               <input type="range" min={minRows} max={maxRows} value={selectedRows} className="slider" id="myRange" onChange={(e) => setSelectedRows(parseInt(e.target.value))} />
+              <span className="span-slider">{maxRows}</span>
             </div>
-            <h2>Categories (Max: 6)</h2>
-            <div className="category-container">
+            <br /><br /><br />
+            <h4>Categories (Max: 6)</h4>
+            <div className="row">
               {
                 questionsList.map((question) => question.category).filter(onlyUnique).map((category) => (
-                  <div className="checkbox-wrapper">
+                  <div className="checkbox-wrapper col-6">
                     <div className="round">
                       <input type="checkbox" id={`category_${category}`} name="category" value={category} onChange={() => onChangeCategory(category)} checked={selectedCategories.includes(category)} />
                       <label htmlFor={`category_${category}`}></label>
@@ -105,20 +121,30 @@ function Jeopardy() {
                 ))
               }
             </div>
-            <h2>Import Questions</h2>
-            <input type="file" id="file-input" accept=".json" onChange={e => onFileChosen(e.target.files[0])} />
+            <br /><br /><br />
+            <h4>Import Questions</h4>
+            {/* <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>Default file input example</Form.Label>
+              <Form.Control type="file" id="file-input" accept=".json" onChange={e => onFileChosen(e.target.files[0])} />
+            </Form.Group> */}
+            {/* <input type="file" id="file-input" accept=".json" onChange={e => onFileChosen(e.target.files[0])} /> */}
+            <br /><br /><br />
+            <button className="btn btn-success" onClick={onCreateBoard}>Create Board</button>
           </div>
-          <div className="div-col-10 preview">
+          <div className="col-9 preview">
             <h2>Preview</h2>
             <div className="board">
-              <Board questions={filteredQuestions} preview={true}></Board>
+              {
+                filteredQuestions.length == 0 ? 
+                  <p className="board-no-elements">No preview available... Please select valid categories</p> 
+                : <Board questions={filteredQuestions} preview={true}></Board>
+              }
             </div>
           </div>
         </div>
-        <button className="btn-create-board" onClick={onCreateBoard}>Create Board</button>
       </div>
       <div id="play-game" className="game-hidden board-no-limits board-container">
-        <Board questions={filteredQuestions}></Board>
+        <Board questions={filteredQuestions} created={created}></Board>
       </div>
     </>
   )

@@ -7,7 +7,7 @@ function App() {
     <>
       <div className="game-row">
         <GameCard title='Jeopardy' img={jeopardyPNG} link='/jeopardy'/>
-        <GameCard title='Wheel Of Fortune' img='' link='/wheeloffortune'/>
+        {/* <GameCard title='Wheel Of Fortune' img='' link='/wheeloffortune'/> */}
       </div>
     </>
   )
